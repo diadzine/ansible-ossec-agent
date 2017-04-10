@@ -1,0 +1,19 @@
+---
+# tasks file for ossec-agent
+
+- name: "Install the correct repository"
+  include: "RedHat.yml"
+  when: ansible_os_family == "RedHat"
+
+- name: Set ossec deploy facts for RedHat
+  set_fact:
+    ossec_agent_config_filename: ossec-agent.conf
+    ossec_init_name: ossec-hids
+  when: ansible_os_family == "RedHat"
+
+- name: "Installing the ossec-agent.conf"
+  template: src={{ role_path }}/templates/ossec-agent.conf.j2
+            dest=/var/ossec/etc/ossec.conf
+            owner=root
+            group=root
+            mode=0400

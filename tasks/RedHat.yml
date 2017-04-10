@@ -1,0 +1,21 @@
+---
+# Tasks specific for RedHat systems
+
+- name: Install EPEL
+  become: true
+  yum:
+    name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm"
+    state: present
+
+- name: Install wazuh repo
+  become: true
+  template: src={{ role_path }}/files/wazuh.repo
+            dest=/etc/yum.repos.d/wazuh.repo
+            owner=root
+            group=root
+            mode=0644
+
+- name: Install ossec-hids-agent
+  yum:
+    name: ossec-hids-agent
+    state: present
