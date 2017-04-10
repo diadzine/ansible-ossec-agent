@@ -1,6 +1,8 @@
 ossec-agent
 ===========
 
+[![Build Status](https://travis-ci.org/diadzine/ansible-ossec-agent.svg?branch=master)](https://travis-ci.org/diadzine/ansible-ossec-agent)
+
 Ansible role to install the wazuh ossec-agent.
 
 Requirements
